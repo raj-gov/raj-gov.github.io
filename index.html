@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Average Adjuestment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+function validateForm() {
+  let i = document.getElementById("IAmt").value;
+  let cs = document.getElementById("csno").value;
+  let cvalue = document.getElementById("cpsv").value;
+  let ravg = document.getElementById("ravg").value;
+  let oldi,oldcs;
+  if (i == "" || cs == "" || cvalue == "" || ravg == "") {
+    alert("Invested Amount must be filled out\n Current stock No must be filled out\n Current stock value must be filled out\n Real average must be filled out");
+    return false;
+  }
+  else{
+      i = parseFloat(i);
+      cs = parseFloat(cs);
+      cvalue = parseFloat(cvalue);
+      ravg = parseFloat(ravg);
+      oldi = i
+      oldcs = cs
+      while(true){
+          i=i+cvalue;
+          cs=cs+1;
+          avg = i/cs;
+          if(avg<=ravg){
+              document.getElementById('tir').innerText=i;
+              document.getElementById('tsr').innerText=cs;
+              document.getElementById('na').innerText=avg;
+              document.getElementById('ntir').innerText=i-oldi;
+              document.getElementById('ntsr').innerText=cs-oldcs;
+              document.getElementById('nna').innerText=avg;
+              break;
+          }
+      }
+      return true;
+  }
+}
+</script>
+</head>
+<body>
+<div class="jumbotron text-center">
+  <h1>Stock Average Adjuestment</h1>
+  <p>This is a simple stock average adjuestment calculator</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Required Inputs</h3>
+      <table class="table">
+        <tbody>
+          <tr><td>Invested Amount:</td><td> <input type="text" id="IAmt"></td></tr>
+          <tr><td>Current Stocks No:</td><td><input type="text" id="csno"></td></tr>
+          <tr><td>Current Per Stock Value:</td><td><input type="text" id="cpsv"></td></tr>
+          <tr><td>Required Average:</td><td><input type="text" id="ravg"></td></tr>
+          <tr><td></td><td><button onclick="validateForm()">
+            Calculate !
+          </button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <h3>Adjuestment Required</h3>
+      <table class="table">
+        <tbod>
+      <tr><td>New Investment Required:</td><td><label id="ntir"></label></td></tr>
+      <tr><td>New Stocks Required:</td><td><label id="ntsr"></label></td></tr>
+      <tr><td> New Avg:</td><td><label id="nna"></label></td></tr>
+    </tbod>
+    </table>
+    </div>
+    <div class="col-sm-4">
+      <h3>Final Output</h3>
+      <table class="table">
+        <tbod>
+      <tr><td>Final Investment:</td><td><label id="tir"></label></td></tr>
+      <tr><td>Final Stocks:</td><td><label id="tsr"></label></td></tr>
+      <tr><td> New Avg:</td><td><label id="na"></label></td></tr>
+    </tbod>
+    </table>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://github.com/raj-gov/raj-gov.github.io/"> Govinda Rajbhar</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>
